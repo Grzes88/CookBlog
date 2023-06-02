@@ -5,14 +5,14 @@ namespace CookBlog.Core.Entities;
 public class Post
 {
     public PostId Id { get; }
-    public string Title { get; private set; }
-    public string Description { get; private set; }
+    public Title Title { get; private set; }
+    public Description Description { get; private set; }
 
     public Post()
     {
     }
 
-    public Post(PostId id, string title, string description)
+    public Post(PostId id, Title title, Description description)
     {
         Id = id;
         Title = title;

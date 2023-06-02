@@ -1,17 +1,19 @@
-﻿namespace CookBlog.Core.Entities;
+﻿using CookBlog.Core.ValuesObjects;
+
+namespace CookBlog.Core.Entities;
 
 public class Category
 {
-    public Guid Id { get; }
-    public string Name { get; }
+    public CategoryId Id { get; }
+    public FullName FullName { get; private set; }
 
     public Category()
     {     
     }
 
-    public Category(Guid id, string name)
+    public Category(CategoryId id, FullName fullName)
     {
         Id = id;
-        Name = name;
+        FullName = fullName;
     }
 }

@@ -1,15 +1,17 @@
-﻿namespace CookBlog.Core.Entities;
+﻿using CookBlog.Core.ValuesObjects;
+
+namespace CookBlog.Core.Entities;
 
 public class Tag
 {
-    public Guid Id { get; }
-    public string Description { get; }
+    public TagId Id { get; }
+    public Description Description { get; private set; }
 
     public Tag()
     {
     }
 
-    public Tag(Guid id, string description)
+    public Tag(TagId id, Description description)
     {
         Id = id;
         Description = description;
