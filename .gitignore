@@ -424,4 +424,19 @@ FodyWeavers.xsd
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
+/shelf/
+/workspace.xml
+# Rider ignored files
+/contentModel.xml
+/.idea.CookBlogApi.iml
+/modules.xml
+/projectSettingsUpdater.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+
+
 # End of https://www.toptal.com/developers/gitignore/api/dotnetcore,visualstudiocode,visualstudio
+/tests/CookBlog.Tests.Unit/obj/project.assets.json
