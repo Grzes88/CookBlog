@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "nVmrrZvZUDJaivOdHtiA9EmgjLdnWESL7jJaRt0G2wZj8TnzJmzoZuSRN1BAMV36xfSX6XU/8vGW6kF8xAcq4g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Szymon\\source\\repos\\CookBolog-master\\src\\CookBlog.Data\\CookBlog.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Szymon\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
