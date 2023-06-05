@@ -10,7 +10,7 @@ public class User
     public Password Password { get; private set; }
     public FullName FullName { get; private set; }
     public Role Role { get; private set; }
-    public DateTime CreatedAt { get; set; }
+    public DateTime CreatedAt { get; private set; }
 
     public User()
     {

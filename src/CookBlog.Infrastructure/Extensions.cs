@@ -63,7 +63,7 @@ public static class Extensions
         {
             reDoc.RoutePrefix = "docs";
             reDoc.SpecUrl("/swagger/v1/swagger.json");
-            reDoc.DocumentTitle = "CookBlog";
+            reDoc.DocumentTitle = "CookBlog Api";
         });
         app.UseAuthentication();
         app.UseAuthorization();
