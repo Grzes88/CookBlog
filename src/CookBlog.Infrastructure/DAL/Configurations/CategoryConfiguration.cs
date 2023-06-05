@@ -1,0 +1,19 @@
+﻿using CookBlog.Core.Entities;
+using CookBlog.Core.ValuesObjects;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace CookBlog.Infrastructure.DAL.Configurations;
+
+internal sealed class CategoryConfiguration : IEntityTypeConfiguration<Category>
+{
+    public void Configure(EntityTypeBuilder<Category> builder)
+    {
+        builder.HasKey(c => c.Id);
+        builder.Property(c => c.Id)
+            .HasConversion(cid => cid.Value, g => new CategoryId(g));
+        builder.Property(c => c.FullName)
+            .IsRequired()
+            .HasConversion(fn => fn.Value, s => new FullName(s));
+    }
+}
