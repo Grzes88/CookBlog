@@ -1,5 +1,5 @@
 ﻿using CookBlog.Application.Abstractions;
-using CookBlog.Application.Command;
+using CookBlog.Application.Commands;
 using CookBlog.Application.DTO;
 using CookBlog.Application.Queries;
 using Microsoft.AspNetCore.Mvc;

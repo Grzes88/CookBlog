@@ -1,0 +1,46 @@
+@api = https://localhost:5001
+
+### Authenticate and grab the access token
+# @name sign_in
+POST {{api}}/account/authenticate
+Content-Type: application/json
+
+{
+    "userName": "MpaTestUser",
+    "password": "48887cdb77faaa23e0c40d2f0ef1bcbe"
+}
+
+###
+@accessToken = {{sign_in.response.body.token}}
+
+### add
+POST {{api}}/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+  "decisionId":3,
+  "incomingDocumentId": 587
+}
+
+### 
+PUT {{api}}//
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+[
+  {
+    "": 1,
+    "": 1
+  },
+  {
+    "": 4,
+    "": 1
+  }
+]
+
+### 
+GET {{api}}//
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+

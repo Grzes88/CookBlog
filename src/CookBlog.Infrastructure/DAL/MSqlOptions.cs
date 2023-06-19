@@ -1,6 +1,6 @@
 ﻿namespace CookBlog.Infrastructure.DAL;
 
-internal sealed class MySqlOptions
+internal sealed class MSqlOptions
 {
     public string ConnectionString { get; set; }
 }

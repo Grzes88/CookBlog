@@ -7,6 +7,13 @@ public class Post
     public PostId Id { get; }
     public Title Title { get; private set; }
     public Description Description { get; private set; }
+    public Category Category { get; private set; }
+    public CategoryId CategoryId { get; private set; }
+    //    public IEnumerable<Tag> Tags => _tags;
+    //   public IEnumerable<Comment> Comments => _comments;
+
+    //  private readonly HashSet<Tag> _tags =new HashSet<Tag>();
+    // private readonly HashSet<Comment> _comments = new HashSet<Comment>();
 
     public Post()
     {

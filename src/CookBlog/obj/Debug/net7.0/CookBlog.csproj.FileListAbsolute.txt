@@ -574,3 +574,5 @@ C:\Users\Szymon\source\repos\CookBolog-master\src\CookBlog\obj\Debug\net7.0\refi
 C:\Users\Szymon\source\repos\CookBolog-master\src\CookBlog\obj\Debug\net7.0\CookBlog.pdb
 C:\Users\Szymon\source\repos\CookBolog-master\src\CookBlog\obj\Debug\net7.0\CookBlog.genruntimeconfig.cache
 C:\Users\Szymon\source\repos\CookBolog-master\src\CookBlog\obj\Debug\net7.0\ref\CookBlog.dll
+C:\Users\Szymon\source\repos\CookBolog-master\src\CookBlog\bin\Debug\net7.0\MediatR.dll
+C:\Users\Szymon\source\repos\CookBolog-master\src\CookBlog\bin\Debug\net7.0\MediatR.Contracts.dll

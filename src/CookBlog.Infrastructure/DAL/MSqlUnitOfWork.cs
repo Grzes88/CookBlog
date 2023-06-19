@@ -1,10 +1,10 @@
 ﻿namespace CookBlog.Infrastructure.DAL;
 
-internal sealed class MySqlUnitOfWork : IUnitOfWork
+internal sealed class MSqlUnitOfWork : IUnitOfWork
 {
     private readonly MyCookBlogDbContext _dbContext;
 
-    public MySqlUnitOfWork(MyCookBlogDbContext dbContext) => _dbContext = dbContext;
+    public MSqlUnitOfWork(MyCookBlogDbContext dbContext) => _dbContext = dbContext;
 
     public async Task ExecuteAsync(Func<Task> action)
     {

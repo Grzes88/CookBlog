@@ -10,16 +10,17 @@ namespace CookBlog.Infrastructure.DAL;
 
 internal static class Extensions
 {
-    private const string OptionsSectionName = "MySql";
+    private const string OptionsSectionName = "MSql";
 
-    public static IServiceCollection AddMySql(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddMSql(this IServiceCollection services, IConfiguration configuration)
     {
-        services.Configure<MySqlOptions>(configuration.GetRequiredSection(OptionsSectionName));
-        var postgresOptions = configuration.GetOptions<MySqlOptions>(OptionsSectionName);
+        services.Configure<MSqlOptions>(configuration.GetRequiredSection(OptionsSectionName));
+        var postgresOptions = configuration.GetOptions<MSqlOptions>(OptionsSectionName);
         services.AddDbContext<MyCookBlogDbContext>(x => x.UseSqlServer(postgresOptions.ConnectionString));
-        services.AddScoped<IUserRepository, MySqlUserRepository>();
+        services.AddScoped<IUserRepository, MSqlUserRepository>();
+        services.AddScoped<ICategoryRepository, MSqlCategoryRepository>();
         services.AddHostedService<DatabaseInitializer>();
-        services.AddScoped<IUnitOfWork, MySqlUnitOfWork>();
+        services.AddScoped<IUnitOfWork, MSqlUnitOfWork>();
 
         services.TryDecorate(typeof(ICommandHandler<>), typeof(UnitOfWorkCommandHandlerDecorator<>));
 

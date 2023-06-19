@@ -1,7 +1,9 @@
 ﻿using CookBlog.Application.Abstractions;
 using CookBlog.Core.Abstractions;
+using CookBlog.Core.Repositories;
 using CookBlog.Infrastructure.Auth;
 using CookBlog.Infrastructure.DAL;
+using CookBlog.Infrastructure.DAL.Repositories;
 using CookBlog.Infrastructure.Exceptions;
 using CookBlog.Infrastructure.Logging;
 using CookBlog.Infrastructure.Security;
@@ -26,8 +28,8 @@ public static class Extensions
         services.AddHttpContextAccessor();
 
         services
-            .AddMySql(configuration)
-            // .AddSingleton<IWeeklyParkingSpotRepository, InMemoryWeeklyParkingSpotRepository>()
+            .AddMSql(configuration)
+            .AddSingleton<ICategoryRepository, InMemoryCategoryRepository>()
             .AddSingleton<IClock, Clock>();
 
         services.AddCustomLogging();
