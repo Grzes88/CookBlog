@@ -11,6 +11,9 @@ public class User
     public FullName FullName { get; private set; }
     public Role Role { get; private set; }
     public DateTime CreatedAt { get; private set; }
+    public IEnumerable<Post> Posts => _posts;
+
+    private readonly HashSet<Post> _posts = new HashSet<Post>();
 
     public User()
     {

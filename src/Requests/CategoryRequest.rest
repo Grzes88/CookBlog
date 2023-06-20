@@ -14,7 +14,7 @@ Content-Type: application/json
 @accessToken = {{sign_in.response.body.token}}
 
 ### add
-POST {{api}}/
+POST {{api}}
 Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
@@ -39,8 +39,8 @@ Content-Type: application/json
   }
 ]
 
-### 
-GET {{api}}//
+###  categories
+GET {{api}}/categories
 Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 

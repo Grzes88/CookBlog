@@ -33,7 +33,7 @@ public class CategoryController : ControllerBase
         return Ok(category);
     }
 
-    [HttpGet("categories")]
+    [HttpGet("api/categories")]
     public async Task<ActionResult<IEnumerable<CategoryDto>>> GetAll(CancellationToken token)
     {
         var categories = await _mediator.Send(new GetCategories(), token);
@@ -43,14 +43,14 @@ public class CategoryController : ControllerBase
     [HttpDelete("category/{id}")]
     public async Task<IActionResult> Delete(Guid id, CancellationToken token)
     {
-        var category = await _mediator.Send(new DeleteCategory(id), token);
-        return Ok(category);
+        await _mediator.Send(new DeleteCategory(id), token);
+        return NoContent();
     }
 
     [HttpPut("category/{id}")]
     public async Task<IActionResult> Update(Guid id, UpdateCategory command, CancellationToken token)
     {
-        var category = await _mediator.Send(command with {CategoryId = id}, token);
+        var category = await _mediator.Send(command with { CategoryId = id }, token);
         return Ok(category);
     }
 }

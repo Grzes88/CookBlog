@@ -9,6 +9,8 @@ internal sealed class PostConfiguration : IEntityTypeConfiguration<Post>
 {
     public void Configure(EntityTypeBuilder<Post> builder)
     {
+        builder.HasMany(p => p.Comments).WithOne(c => c.Post).HasForeignKey(c => c.PostId);
+        builder.HasMany(p => p.Tags).WithMany(c => c.Posts);
         builder.HasKey(p => p.Id);
         builder.Property(p => p.Id)
             .HasConversion(pid => pid.Value, g => new PostId(g));

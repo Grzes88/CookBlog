@@ -9,6 +9,7 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
+        builder.HasMany(u => u.Posts).WithOne(p => p.User).HasForeignKey(p => p.UserId);
         builder.HasKey(u => u.Id);
         builder.Property(u => u.Id)
             .HasConversion(uid => uid.Value, g => new UserId(g));

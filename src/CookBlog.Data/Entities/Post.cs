@@ -9,11 +9,13 @@ public class Post
     public Description Description { get; private set; }
     public Category Category { get; private set; }
     public CategoryId CategoryId { get; private set; }
-    //    public IEnumerable<Tag> Tags => _tags;
-    //   public IEnumerable<Comment> Comments => _comments;
+    public UserId UserId { get; private set; }
+    public User User { get; private set; }
+    public IEnumerable<Tag> Tags => _tags;
+    public IEnumerable<Comment> Comments => _comments;
 
-    //  private readonly HashSet<Tag> _tags =new HashSet<Tag>();
-    // private readonly HashSet<Comment> _comments = new HashSet<Comment>();
+    private readonly HashSet<Tag> _tags = new HashSet<Tag>();
+    private readonly HashSet<Comment> _comments = new HashSet<Comment>();
 
     public Post()
     {
