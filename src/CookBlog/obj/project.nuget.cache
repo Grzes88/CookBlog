@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2K4uD/17aB0uEy+CTCBxNk2UIQUfUNOqTAI9hnmHDnsM8p3YzGFQe49fPsbM8gZ5WKjM4666ZOkYso6X1XpALQ==",
+  "dgSpecHash": "K2sABOIqkZUClu9NdtND6edLZkgj08xjvv6j104Hf6sLo8QMSF0cfrx5Ko3+0HJ1BToU/OeCxjxK89RjjKQSXQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Szymon\\source\\repos\\CookBolog-master\\src\\CookBlog\\CookBlog.csproj",
   "expectedPackageFiles": [
@@ -56,8 +56,6 @@
     "C:\\Users\\Szymon\\.nuget\\packages\\humanizer.core.zh-cn\\2.14.1\\humanizer.core.zh-cn.2.14.1.nupkg.sha512",
     "C:\\Users\\Szymon\\.nuget\\packages\\humanizer.core.zh-hans\\2.14.1\\humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "C:\\Users\\Szymon\\.nuget\\packages\\humanizer.core.zh-hant\\2.14.1\\humanizer.core.zh-hant.2.14.1.nupkg.sha512",
-    "C:\\Users\\Szymon\\.nuget\\packages\\mediatr\\12.0.1\\mediatr.12.0.1.nupkg.sha512",
-    "C:\\Users\\Szymon\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\Szymon\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.5\\microsoft.aspnetcore.authentication.jwtbearer.7.0.5.nupkg.sha512",
     "C:\\Users\\Szymon\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Szymon\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
