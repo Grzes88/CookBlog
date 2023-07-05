@@ -1,5 +1,6 @@
 @api = https://localhost:5001
 
+
 ### Authenticate and grab the access token
 # @name sign_in
 POST {{api}}/account/authenticate
@@ -7,40 +8,59 @@ Content-Type: application/json
 
 {
     "userName": "MpaTestUser",
-    "password": "48887cdb77faaa23e0c40d2f0ef1bcbe"
+    "password": "48887cdb77faaa23e0c40d2f0ef1bcbe" 
+}
+
+### add user
+# @name sign_in
+POST {{api}}/users
+Content-Type: application/json
+
+{
+"userId": "2c4a230c-5085-4924-a3e1-25fb4fc5965b",
+"email": "Mar123@gmail.com",
+"username": "Maras",
+"password": "string",
+"fullName": "Marek Paś",
+"role": "Dyrektor"
 }
 
 ###
 @accessToken = {{sign_in.response.body.token}}
 
-### add
-POST {{api}}
-Authorization: Bearer {{accessToken}}
+### add category
+POST {{api}}/category
 Content-Type: application/json
 
 {
-  "decisionId":3,
-  "incomingDocumentId": 587
+"fullName": "Danie Dnia"
 }
 
-### 
-PUT {{api}}//
-Authorization: Bearer {{accessToken}}
-Content-Type: application/json
-
-[
-  {
-    "": 1,
-    "": 1
-  },
-  {
-    "": 4,
-    "": 1
-  }
-]
-
-###  categories
+###  get categories
 GET {{api}}/categories
-Authorization: Bearer {{accessToken}}
 Content-Type: application/json
+
+###  get category id
+GET {{api}}/category/0C35FFF5-E326-4EE2-9B00-4C3723B33C3C
+Content-Type: application/json
+
+### update category
+PUT {{api}}/category/0C35FFF5-E326-4EE2-9B00-4C3723B33C3C
+Content-Type: application/json
+
+{
+"fullName": "Drogie"
+}
+
+###  delete category
+DELETE {{api}}/category/0C35FFF5-E326-4EE2-9B00-4C3723B33C3C
+Content-Type: application/json
+
+
+
+
+
+
+
+
 

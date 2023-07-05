@@ -5,3 +5,5 @@ namespace CookBlog.Application.Queries;
 
 public record GetCategory(Guid CategoryId) : IQuery<CategoryDto>;
 
+
+

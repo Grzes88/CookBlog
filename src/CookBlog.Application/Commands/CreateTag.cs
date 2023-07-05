@@ -2,4 +2,4 @@
 
 namespace CookBlog.Application.Commands;
 
-public sealed record CreateCategory(string FullName) : ICommand;
+public sealed record CreateTag(string Description) : ICommand;

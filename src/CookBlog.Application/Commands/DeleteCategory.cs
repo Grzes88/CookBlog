@@ -2,4 +2,4 @@
 
 namespace CookBlog.Application.Commands;
 
-public record DeleteCategory(Guid CategoryId) : ICommand;
+public sealed record DeleteCategory(Guid CategoryId) : ICommand;

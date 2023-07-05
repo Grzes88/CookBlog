@@ -1,15 +1,14 @@
 ﻿using CookBlog.Application.Abstractions;
-using CookBlog.Application.Exceptions;
 using CookBlog.Core.Repositories;
 using CookBlog.Core.ValuesObjects;
 
 namespace CookBlog.Application.Commands.Handlers;
 
-public class UpdateCategoryHandler : ICommandHandler<UpdateCategory>
+public sealed class UpdateCategoryHandler : ICommandHandler<UpdateCategory>
 {
     private readonly ICategoryRepository _repository;
 
-    public UpdateCategoryHandler(ICategoryRepository repository) 
+    public UpdateCategoryHandler(ICategoryRepository repository)
         => _repository = repository;
 
     public async Task HandleAsync(UpdateCategory command)
@@ -17,11 +16,11 @@ public class UpdateCategoryHandler : ICommandHandler<UpdateCategory>
         var categoryId = new CategoryId(command.CategoryId);
         var category = await _repository.GetAsync(categoryId);
 
-        if (category is null)
+        if (category is null) 
         {
-            throw new CategoryNotFoundException();
+            throw new Exception($"category not found");
         }
 
-        await _repository.UpdateAsync(category);
+        category.Update(command.FullName);
     }
 }

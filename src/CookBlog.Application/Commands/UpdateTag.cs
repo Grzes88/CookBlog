@@ -2,4 +2,5 @@
 
 namespace CookBlog.Application.Commands;
 
-public sealed record CreateCategory(string FullName) : ICommand;
+public sealed record UpdateTag(Guid TagId, string Description) : ICommand;
+

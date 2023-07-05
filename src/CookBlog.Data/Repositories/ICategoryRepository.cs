@@ -6,8 +6,7 @@ namespace CookBlog.Core.Repositories;
 public interface ICategoryRepository
 {
     Task<IEnumerable<Category>> GetAllAsync();
-    Task<Category> GetAsync(CategoryId id);
+    Task<Category?> GetAsync(CategoryId id);
     Task AddAsync(Category category);
-    Task UpdateAsync(Category category);
-    Task DeleteAsync(CategoryId id);
+    void DeleteAsync(Category category);
 }

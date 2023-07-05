@@ -4,7 +4,7 @@ namespace CookBlog.Core.Entities;
 
 public class Category
 {
-    public CategoryId Id { get; }
+    public CategoryId Id { get; private set; }
     public FullName FullName { get; private set; }
     public IEnumerable<Post> Posts => _posts;
 
@@ -14,11 +14,17 @@ public class Category
     {
     }
 
-    public Category(CategoryId id, FullName fullName)
+    private Category(FullName fullName)
     {
-        Id = id;
         FullName = fullName;
     }
 
-    public static Category Create(CategoryId id, FullName fullName) => new Category(id, fullName);
+    private Category(CategoryId categoryId, FullName fullName)
+    {
+        Id = categoryId;
+        FullName = fullName;
+    }
+
+    public static Category Create(FullName fullName) => new Category(Guid.NewGuid(), fullName);
+    public void Update(FullName fullName) => FullName = fullName;
 }

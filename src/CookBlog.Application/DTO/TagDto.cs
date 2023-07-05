@@ -1,7 +1,7 @@
 ﻿namespace CookBlog.Application.DTO;
 
-public class CategoryDto
-{
+public class TagDto
+{ 
     public Guid Id { get; set; }
-    public string? FullName { get; set; }
+    public string? Description { get; set; }
 }

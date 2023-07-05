@@ -3,4 +3,4 @@ using CookBlog.Application.DTO;
 
 namespace CookBlog.Application.Queries;
 
-public record GetCategories() : IQuery<IEnumerable<CategoryDto>>;
+public record GetTags() : IQuery<IEnumerable<TagDto>>;
