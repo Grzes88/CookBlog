@@ -1,5 +1,6 @@
 ﻿using CookBlog.Application.Abstractions;
 using CookBlog.Application.DTO;
+using CookBlog.Application.Exceptions;
 using CookBlog.Application.Queries;
 using CookBlog.Core.ValuesObjects;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,11 @@ internal sealed class GetCategoryHandler : IQueryHandler<GetCategory, CategoryDt
             .AsNoTracking()
             .SingleOrDefaultAsync(c => c.Id == categoryId);
 
-        return category?.AsDto();
+        if (category is null) 
+        {
+            throw new NotFoundCategoryException(categoryId);
+        }
+
+        return category.AsDto();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CookBlog.Application.Abstractions;
+using CookBlog.Application.Exceptions;
 using CookBlog.Core.Repositories;
 using CookBlog.Core.ValuesObjects;
 
@@ -18,7 +19,7 @@ public sealed class UpdateTagHandler : ICommandHandler<UpdateTag>
 
         if (tag is null)
         {
-            throw new Exception($"tag not found");
+            throw new NotFoundTagException(tagId);
         }
 
         tag.Update(command.Description);

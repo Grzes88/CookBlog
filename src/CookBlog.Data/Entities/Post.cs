@@ -21,10 +21,42 @@ public class Post
     {
     }
 
-    public Post(PostId id, Title title, Description description)
+    private Post(PostId id, Title title, Description description, CategoryId categoryId,
+        UserId userId, HashSet<Tag> tags)
     {
         Id = id;
         Title = title;
         Description = description;
+        CategoryId = categoryId;
+        UserId = userId;
+        _tags = tags;
+    }
+
+    public static Post Create(Title title, Description description,
+        CategoryId categoryId, UserId userId, HashSet<Tag> tags)
+        => new Post(Guid.NewGuid(), title, description, categoryId, userId, tags);
+
+    public void Update(Title title, Description description, CategoryId categoryId, HashSet<Tag> tags)
+    {
+        Title = title;
+        Description = description;
+        CategoryId = categoryId;
+        foreach (var tag in tags)
+        {
+            if (_tags.Any(t => t.Id == tag.Id))
+                continue;
+        }
+
+        var tagsToRemoved = _tags.Where(oldTag => !tags.Any(newTag => newTag.Id == oldTag.Id)).ToList();
+        foreach (var tagToRemoved in tagsToRemoved)
+        {
+            _tags.Remove(tagToRemoved);
+        }
+
+        var newTags = tags.Where(newTag => !_tags.Any(oldTag => oldTag.Id == newTag.Id)).ToList();
+        foreach (var newTag in newTags)
+        {
+            _tags.Add(newTag);
+        }
     }
 }

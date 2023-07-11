@@ -1,9 +1,7 @@
 ﻿using CookBlog.Application.Abstractions;
 using CookBlog.Core.Abstractions;
-using CookBlog.Core.Repositories;
 using CookBlog.Infrastructure.Auth;
 using CookBlog.Infrastructure.DAL;
-using CookBlog.Infrastructure.DAL.Repositories;
 using CookBlog.Infrastructure.Exceptions;
 using CookBlog.Infrastructure.Logging;
 using CookBlog.Infrastructure.Security;
@@ -29,7 +27,6 @@ public static class Extensions
 
         services
             .AddMSql(configuration)
-            .AddSingleton<ICategoryRepository, InMemoryCategoryRepository>()
             .AddSingleton<IClock, Clock>();
 
         services.AddCustomLogging();
@@ -65,7 +62,7 @@ public static class Extensions
         {
             reDoc.RoutePrefix = "docs";
             reDoc.SpecUrl("/swagger/v1/swagger.json");
-            reDoc.DocumentTitle = "CookBlog Api";
+            reDoc.DocumentTitle = "CookBlog API";
         });
         app.UseAuthentication();
         app.UseAuthorization();

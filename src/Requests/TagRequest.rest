@@ -5,7 +5,7 @@ POST {{api}}/tag
 Content-Type: application/json
 
 {
-  "description": "Słone"
+  "description": "Mniam!"
 }
 
 ### get tags

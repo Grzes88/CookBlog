@@ -1,4 +1,5 @@
 ﻿using CookBlog.Application.Abstractions;
+using CookBlog.Application.Exceptions;
 using CookBlog.Core.Repositories;
 using CookBlog.Core.ValuesObjects;
 
@@ -18,7 +19,7 @@ public sealed class UpdateCategoryHandler : ICommandHandler<UpdateCategory>
 
         if (category is null) 
         {
-            throw new Exception($"category not found");
+            throw new NotFoundCategoryException(categoryId);
         }
 
         category.Update(command.FullName);

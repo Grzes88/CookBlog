@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "dI56kzzWmgsKaiTDAVvmQKa7D9QC+w1tZJhNWJD8+wURpWaEc+Qmr1Y2svTjZiGI+mo8mYzCK/E02VAgPKB2bQ==",
+  "dgSpecHash": "wWLJ1NkU3CZeGHHaFaFjEjgKLlrYB0ry298W3mWin4cwsIAK0xqfLBY8+QkZBOFn+gvHwgMELIgxZHpJPbN1Hw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Szymon\\source\\repos\\CookBolog-master\\tests\\CookBlog.Tests.Integration\\CookBlog.Tests.Integration.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\Szymon\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\Szymon\\.nuget\\packages\\diffengine\\11.3.0\\diffengine.11.3.0.nupkg.sha512",
     "C:\\Users\\Szymon\\.nuget\\packages\\emptyfiles\\4.4.0\\emptyfiles.4.4.0.nupkg.sha512",
+    "C:\\Users\\Szymon\\.nuget\\packages\\fluentassertions\\6.11.0\\fluentassertions.6.11.0.nupkg.sha512",
     "C:\\Users\\Szymon\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\Szymon\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Szymon\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",

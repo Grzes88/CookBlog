@@ -1,5 +1,6 @@
 ﻿using CookBlog.Application.Abstractions;
 using CookBlog.Application.DTO;
+using CookBlog.Application.Exceptions;
 using CookBlog.Application.Queries;
 using CookBlog.Core.ValuesObjects;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +24,7 @@ public sealed class GetTagHandler : IQueryHandler<GetTag, TagDto>
 
         if (tag is null) 
         {
-            throw new Exception($"not found tag");
+            throw new NotFoundTagException(tagId);
         }
 
         return tag.AsDto();

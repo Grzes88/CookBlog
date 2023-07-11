@@ -7,7 +7,7 @@ using Serilog;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
-   // .AddCore()
+  // .AddCore()
     .AddApplication()
     .AddInfrastructure(builder.Configuration);
 
