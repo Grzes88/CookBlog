@@ -32,7 +32,7 @@ public class UsersController : ControllerBase
         _tokenStorage = tokenStorage;
     }
 
-    [Authorize(Policy = "is-admin")]
+   // [Authorize(Policy = "is-admin")]
     [HttpGet("{userId:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -69,7 +69,7 @@ public class UsersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    [Authorize(Policy = "is-admin")]
+ //   [Authorize(Policy = "is-admin")]
     public async Task<ActionResult<IEnumerable<UserDto>>> Get([FromQuery] GetUsers query)
         => Ok(await _getUsersHandler.HandleAsync(query));
 

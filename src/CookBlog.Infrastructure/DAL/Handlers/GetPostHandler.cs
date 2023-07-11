@@ -18,17 +18,15 @@ public sealed class GetPostHandler : IQueryHandler<GetPost, PostDto>
     {
         var postId = new PostId(query.PostId);
         var post = await _dbContext.Posts
-            .Include(p => p.Category)
-            .Include(p => p.Comments)
-            .Include(p => p.Tags)
             .AsNoTracking()
-            .SingleOrDefaultAsync(p => p.Id == postId);
+            .Select(Extensions.AsPostDto())
+            .SingleOrDefaultAsync(p => p.Id == postId.Value);
 
         if (post is null) 
         {
             throw new NotFoundPostException(postId);
         }
 
-        return post.AsDto();
+        return post;
     }
 }

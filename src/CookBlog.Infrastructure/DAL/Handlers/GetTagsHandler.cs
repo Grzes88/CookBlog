@@ -14,8 +14,7 @@ public sealed class GetTagsHandler : IQueryHandler<GetTags, IEnumerable<TagDto>>
 
     public async Task<IEnumerable<TagDto>> HandleAsync(GetTags query) 
         => await _dbContext.Tags
-            .Include(t => t.Posts)
             .AsNoTracking()
-            .Select(t => t.AsDto())
+            .Select(Extensions.AsTagDto())
             .ToListAsync();
 }

@@ -1,36 +1,49 @@
 ﻿using CookBlog.Application.DTO;
 using CookBlog.Core.Entities;
+using System.Linq.Expressions;
 
 namespace CookBlog.Infrastructure.DAL.Handlers;
 
 public static class Extensions
 {
-    public static CategoryDto AsDto(this Category entity) => new CategoryDto()
+    public static Expression<Func<Category, CategoryDto>> AsCategoryDto()
     {
-        Id = entity.Id,
-        FullName = entity.FullName
-    }; 
-    
-    public static TagDto AsDto(this Tag entity) => new TagDto()
-    {
-        Id = entity.Id,
-        Description = entity.Description
-    };    
-    
-    public static PostDto AsDto(this Post entity) => new PostDto()
-    {
-        Id = entity.Id,
-        Title = entity.Title,
-        Description = entity.Description,
-        Tags = entity.Tags.Select(t => new TagDto { Id = t.Id, Description = t.Description }).ToHashSet(),
-        Comments = entity.Comments.Select(c => new CommentDto { Id = c.Id, FullName = c.FullName, Description = c.Description }).ToHashSet(),
-        Category = entity.Category.AsDto()
-    };
+        return c => new CategoryDto
+        {
+            Id = c.Id,
+            FullName = c.FullName
+        };
+    }
 
-    public static UserDto AsDto(this User entity) => new UserDto()
+    public static Expression<Func<Tag, TagDto>> AsTagDto()
     {
-        Id = entity.Id,
-        UserName = entity.UserName,
-        FullName = entity.FullName
-    };
+        return t => new TagDto
+        {
+            Id = t.Id,
+            Description = t.Description,
+        };
+    }
+
+    public static Expression<Func<User, UserDto>> AsUserDto()
+    {
+        return u => new UserDto
+        {
+            Id = u.Id,
+            UserName = u.UserName,
+            FullName = u.FullName
+        };
+    }
+
+    public static Expression<Func<Post, PostDto>> AsPostDto()
+    {
+        return p => new PostDto
+        {
+            Id = p.Id,
+            Title = p.Title,
+            Description = p.Description,
+            Tags = p.Tags.Select(t => new TagDto { Id = t.Id, Description = t.Description }).ToHashSet(),
+            Comments = p.Comments.Select(c => new CommentDto { Id = c.Id, FullName = c.FullName, Description = c.Description }).ToHashSet(),
+            Category = new CategoryDto { Id = p.Category.Id, FullName = p.Category.FullName }
+        };
+    }
 }

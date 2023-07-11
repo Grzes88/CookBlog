@@ -13,7 +13,7 @@ GET {{api}}/tags
 Content-Type: application/json
 
 ### get tag id
-GET {{api}}/tag/22AE87F1-C3A2-4F5A-A6D7-ED0833442545
+GET {{api}}/tag/6986edae-5428-449b-aa7c-110f3753b70b
 Content-Type: application/json
 
 ### delete tag

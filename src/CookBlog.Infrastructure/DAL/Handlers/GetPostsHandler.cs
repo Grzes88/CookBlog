@@ -15,9 +15,6 @@ public sealed class GetPostsHandler : IQueryHandler<GetPosts, IEnumerable<PostDt
     public async Task<IEnumerable<PostDto>> HandleAsync(GetPosts query)
         => await _dbContext.Posts
             .AsNoTracking()
-            .Include(p => p.Category)
-            .Include(p => p.Comments)
-            .Include(p => p.Tags)
-            .Select(p => p.AsDto())
+            .Select(Extensions.AsPostDto())
             .ToListAsync();
 }

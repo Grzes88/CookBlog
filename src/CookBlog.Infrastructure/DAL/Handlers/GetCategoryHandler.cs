@@ -19,13 +19,14 @@ internal sealed class GetCategoryHandler : IQueryHandler<GetCategory, CategoryDt
         var categoryId = new CategoryId (query.CategoryId);
         var category = await _dbContext.Categories
             .AsNoTracking()
-            .SingleOrDefaultAsync(c => c.Id == categoryId);
+            .Select(Extensions.AsCategoryDto())
+            .SingleOrDefaultAsync(c => c.Id == categoryId.Value);
 
         if (category is null) 
         {
             throw new NotFoundCategoryException(categoryId);
         }
 
-        return category.AsDto();
+        return category;
     }
 }

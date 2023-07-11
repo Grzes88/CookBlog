@@ -18,15 +18,15 @@ public sealed class GetTagHandler : IQueryHandler<GetTag, TagDto>
     {
         var tagId = new TagId(query.TagId);
         var tag = await _dbContext.Tags
-            .Include(t => t.Posts)
             .AsNoTracking()
-            .SingleOrDefaultAsync(x => x.Id == tagId);
+            .Select(Extensions.AsTagDto())
+            .SingleOrDefaultAsync(x => x.Id == tagId.Value);
 
         if (tag is null) 
         {
             throw new NotFoundTagException(tagId);
         }
 
-        return tag.AsDto();
+        return tag;
     }
 }

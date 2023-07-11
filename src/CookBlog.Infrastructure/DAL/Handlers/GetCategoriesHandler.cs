@@ -14,8 +14,7 @@ public sealed class GetCategoriesHandler : IQueryHandler<GetCategories, IEnumera
 
     public async Task<IEnumerable<CategoryDto>> HandleAsync(GetCategories query)
         => await _dbContext.Categories
-            .Include(c => c.Posts)
             .AsNoTracking()
-            .Select(c => c.AsDto())
+            .Select(Extensions.AsCategoryDto())
             .ToListAsync();
 }

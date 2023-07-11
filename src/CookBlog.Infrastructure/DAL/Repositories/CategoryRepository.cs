@@ -22,6 +22,9 @@ internal sealed class CategoryRepository : ICategoryRepository
         .Include(c => c.Posts)
         .SingleOrDefaultAsync(c => c.Id == id);
 
+    public async Task<bool> AnyAsync(CategoryId id)
+        => await _categories.AnyAsync(p => p.Id == id);
+
     public async Task AddAsync(Category category)
     {
         await _categories.AddAsync(category);
@@ -31,4 +34,5 @@ internal sealed class CategoryRepository : ICategoryRepository
     {
         _categories.Remove(category);
     }
+
 }

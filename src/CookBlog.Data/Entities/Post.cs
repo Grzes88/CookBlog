@@ -41,11 +41,6 @@ public class Post
         Title = title;
         Description = description;
         CategoryId = categoryId;
-        foreach (var tag in tags)
-        {
-            if (_tags.Any(t => t.Id == tag.Id))
-                continue;
-        }
 
         var tagsToRemoved = _tags.Where(oldTag => !tags.Any(newTag => newTag.Id == oldTag.Id)).ToList();
         foreach (var tagToRemoved in tagsToRemoved)

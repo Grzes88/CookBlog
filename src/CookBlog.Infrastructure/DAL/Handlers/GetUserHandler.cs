@@ -18,8 +18,9 @@ internal sealed class GetUserHandler : IQueryHandler<GetUser, UserDto>
         var userId = new UserId(query.UserId);
         var user = await _dbContext.Users
             .AsNoTracking()
-            .SingleOrDefaultAsync(u => u.Id == userId);
+            .Select(Extensions.AsUserDto())
+            .SingleOrDefaultAsync(u => u.Id == userId.Value);
 
-        return user.AsDto();
+        return user;
     }
 }
