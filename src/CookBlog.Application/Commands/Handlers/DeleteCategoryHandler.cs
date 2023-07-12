@@ -1,27 +1,27 @@
 ﻿using CookBlog.Application.Abstractions;
 using CookBlog.Application.Exceptions;
 using CookBlog.Core.Repositories;
+using CookBlog.Core.ValuesObjects;
 
 namespace CookBlog.Application.Commands.Handlers;
 
-public class DeleteCategoryHandler : ICommandHandler<DeleteCategory>
+public sealed class DeleteCategoryHandler : ICommandHandler<DeleteCategory>
 {
-    private readonly ICategoryRepository _repository;
+    private readonly ICategoryRepository _categoryRepository;
 
-    public DeleteCategoryHandler(ICategoryRepository repository)
-    {
-        _repository = repository;
-    }
+    public DeleteCategoryHandler(ICategoryRepository categoryRepository) 
+        => _categoryRepository = categoryRepository;
 
     public async Task HandleAsync(DeleteCategory command)
     {
-        var categoryId = command.CategoryId;
+        var categoryId = new CategoryId(command.CategoryId);
+        var category = await _categoryRepository.GetAsync(categoryId);
 
-        if (Guid.Empty == categoryId)
+        if (category is null)
         {
-            throw new CategoryNotFoundException();
+            throw new NotFoundCategoryException(categoryId);
         }
 
-        await _repository.DeleteAsync(categoryId);
+        _categoryRepository.DeleteAsync(category);
     }
 }

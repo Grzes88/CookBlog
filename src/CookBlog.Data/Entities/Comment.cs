@@ -14,9 +14,19 @@ public class Comment
     {
     }
 
-    public Comment(CommentId id, FullName fullName, Description description)
+    private Comment(CommentId id, FullName fullName, Description description, PostId postId)
     {
         Id = id;
+        FullName = fullName;
+        Description = description;
+        PostId = postId;
+    }
+
+    public static Comment Create(FullName fullName, Description description, PostId postId) 
+        => new Comment(Guid.NewGuid(), fullName, description, postId);
+
+    public void Update(FullName fullName, Description description)
+    {
         FullName = fullName;
         Description = description;
     }

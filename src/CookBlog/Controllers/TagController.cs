@@ -17,8 +17,10 @@ public class TagController : ControllerBase
     private readonly ICommandHandler<UpdateTag> _updateTagHandler;
 
     public TagController(ICommandHandler<CreateTag> createTagHandler,
-        IQueryHandler<GetTag, TagDto> getTagHandler, ICommandHandler<DeleteTag> deleteTagHandler,
-        IQueryHandler<GetTags, IEnumerable<TagDto>> getTagsHandler, ICommandHandler<UpdateTag> updateTagHandler)
+        ICommandHandler<UpdateTag> updateTagHandler,
+        ICommandHandler<DeleteTag> deleteTagHandler,
+        IQueryHandler<GetTag, TagDto> getTagHandler,
+        IQueryHandler<GetTags, IEnumerable<TagDto>> getTagsHandler)
     {
         _createTagHandler = createTagHandler;
         _getTagHandler = getTagHandler;
@@ -34,25 +36,11 @@ public class TagController : ControllerBase
         return NoContent();
     }
 
-    [HttpGet("tag/{tagId}")]
-    public async Task<ActionResult<TagDto>> GetId(Guid tagId)
-    {
-        var tag = await _getTagHandler.HandleAsync(new GetTag(tagId));
-        return Ok(tag);
-    }
-
     [HttpDelete("tag/{tagId}")]
     public async Task<ActionResult> Delete(Guid tagId)
     {
         await _deleteTagHandler.HandleAsync(new DeleteTag(tagId));
         return NoContent();
-    }
-
-    [HttpGet("tags")]
-    public async Task<ActionResult<IEnumerable<TagDto>>> GetAll([FromQuery] GetTags query)
-    {
-        var tags = await _getTagsHandler.HandleAsync(query);
-        return Ok(tags);
     }
 
     [HttpPut("tag/{tagId}")]
@@ -61,4 +49,12 @@ public class TagController : ControllerBase
         await _updateTagHandler.HandleAsync(command with { TagId = tagId });
         return NoContent();
     }
+
+    [HttpGet("tag/{tagId}")]
+    public async Task<ActionResult<TagDto>> GetId(Guid tagId) 
+        => Ok(await _getTagHandler.HandleAsync(new GetTag(tagId)));
+
+    [HttpGet("tags")]
+    public async Task<ActionResult<IEnumerable<TagDto>>> GetAll([FromQuery] GetTags query) 
+        => Ok(await _getTagsHandler.HandleAsync(query));
 }

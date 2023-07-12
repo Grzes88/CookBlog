@@ -8,5 +8,5 @@ public interface ITagRepository
     Task AddAsync(Tag tag);
     Task<Tag?> GetAsync(TagId id);
     void DeleteAsync(Tag tag);
-    Task<ICollection<Tag>> GetTags(ICollection<Guid> ids);
+    Task<IEnumerable<Tag>> GetTags(IEnumerable<Guid> ids);
 }

@@ -27,7 +27,7 @@ internal sealed class TagRepository : ITagRepository
         .Include(t => t.Posts)
         .SingleOrDefaultAsync(t => t.Id == id);
 
-    public async Task<ICollection<Tag>> GetTags(ICollection<Guid> ids)
+    public async Task<IEnumerable<Tag>> GetTags(IEnumerable<Guid> ids)
     {
         var tag = await _tags.Where(t => ids.Contains(t.Id)).ToListAsync();
         return tag;

@@ -4,7 +4,8 @@ internal sealed class MSqlUnitOfWork : IUnitOfWork
 {
     private readonly MyCookBlogDbContext _dbContext;
 
-    public MSqlUnitOfWork(MyCookBlogDbContext dbContext) => _dbContext = dbContext;
+    public MSqlUnitOfWork(MyCookBlogDbContext dbContext) 
+        => _dbContext = dbContext;
 
     public async Task ExecuteAsync(Func<Task> action)
     {

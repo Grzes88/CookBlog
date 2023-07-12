@@ -14,12 +14,7 @@ public class Category
     {
     }
 
-    private Category(FullName fullName)
-    {
-        FullName = fullName;
-    }
-
-    private Category(CategoryId categoryId, FullName fullName)
+    public Category(CategoryId categoryId, FullName fullName)
     {
         Id = categoryId;
         FullName = fullName;

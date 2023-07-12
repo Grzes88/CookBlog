@@ -1,4 +1,5 @@
 ﻿using CookBlog.Application.Abstractions;
+using CookBlog.Application.Exceptions;
 using CookBlog.Core.Repositories;
 using CookBlog.Core.ValuesObjects;
 
@@ -18,7 +19,7 @@ public sealed class DeleteTagHandler : ICommandHandler<DeleteTag>
 
         if (tag is null)
         {
-            throw new Exception($"tag not found");
+            throw new NotFoundTagException(tagId);
         }
 
         _tagRepository.DeleteAsync(tag);

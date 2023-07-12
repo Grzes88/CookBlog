@@ -9,28 +9,18 @@ internal sealed class MSqlUserRepository : IUserRepository
 {
     private readonly DbSet<User> _users;
 
-    public MSqlUserRepository(MyCookBlogDbContext dbContext)
-    {
-        _users = dbContext.Users;
-    }
+    public MSqlUserRepository(MyCookBlogDbContext dbContext) 
+        => _users = dbContext.Users;
 
     public async Task AddAsync(User user)
-    {
-        await _users.AddAsync(user);
-    }
+        => await _users.AddAsync(user);
 
-    public Task<User> GetByIdAsync(UserId id)
-    {
-        return _users.SingleOrDefaultAsync(x => x.Id == id);
-    }
+    public Task<User?> GetByIdAsync(UserId id) 
+        => _users.SingleOrDefaultAsync(x => x.Id == id);
 
-    public Task<User> GetByEmailAsync(Email email)
-    {
-        return _users.SingleOrDefaultAsync(u => u.Email == email);
-    }
+    public Task<User?> GetByEmailAsync(Email email) 
+        => _users.SingleOrDefaultAsync(u => u.Email == email);
 
-    public Task<User> GetByUserNameAsync(UserName userName)
-    {
-        return _users.SingleOrDefaultAsync(u => u.UserName == userName);
-    }
+    public Task<User?> GetByUserNameAsync(UserName userName) 
+        => _users.SingleOrDefaultAsync(u => u.UserName == userName);
 }

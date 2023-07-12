@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CookBlog.Infrastructure.DAL;
 
-internal sealed class MyCookBlogDbContext : DbContext
+public sealed class MyCookBlogDbContext : DbContext
 {
     public DbSet<User> Users { get; set; }
     public DbSet<Post> Posts { get; set; }

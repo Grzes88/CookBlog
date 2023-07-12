@@ -15,17 +15,17 @@ internal static class Extensions
     public static IServiceCollection AddMSql(this IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<MSqlOptions>(configuration.GetRequiredSection(OptionsSectionName));
-        var postgresOptions = configuration.GetOptions<MSqlOptions>(OptionsSectionName);
-        services.AddDbContext<MyCookBlogDbContext>(x => x.UseSqlServer(postgresOptions.ConnectionString));
+        var mSqlOptions = configuration.GetOptions<MSqlOptions>(OptionsSectionName);
+        services.AddDbContext<MyCookBlogDbContext>(x => x.UseSqlServer(mSqlOptions.ConnectionString));
         services.AddScoped<IUserRepository, MSqlUserRepository>();
-        services.AddScoped<ICategoryRepository, MSqlCategoryRepository>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<IPostRepository, PostRepository>();
+        services.AddScoped<ICommentRepository, CommentRepository>();
+        services.AddScoped<ITagRepository, TagRepository>();
         services.AddHostedService<DatabaseInitializer>();
         services.AddScoped<IUnitOfWork, MSqlUnitOfWork>();
 
         services.TryDecorate(typeof(ICommandHandler<>), typeof(UnitOfWorkCommandHandlerDecorator<>));
-
-        // EF Core + Npgsql issue
-        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
         return services;
     }
