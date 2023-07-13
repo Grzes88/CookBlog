@@ -19,7 +19,7 @@ public sealed class UpdateTagHandler : ICommandHandler<UpdateTag>
 
         if (tag is null)
         {
-            throw new NotFoundTagException(tagId);
+            throw new NotFoundTagException();
         }
 
         tag.Update(command.Description);

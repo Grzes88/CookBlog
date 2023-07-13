@@ -19,7 +19,7 @@ public sealed class DeleteTagHandler : ICommandHandler<DeleteTag>
 
         if (tag is null)
         {
-            throw new NotFoundTagException(tagId);
+            throw new NotFoundTagException();
         }
 
         _tagRepository.DeleteAsync(tag);
