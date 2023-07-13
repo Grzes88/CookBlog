@@ -24,7 +24,7 @@ public sealed class GetTagHandler : IQueryHandler<GetTag, TagDto>
 
         if (tag is null) 
         {
-            throw new NotFoundTagException(tagId);
+            throw new NotFoundTagException();
         }
 
         return tag;

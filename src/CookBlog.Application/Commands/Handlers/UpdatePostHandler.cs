@@ -37,6 +37,10 @@ public sealed class UpdatePostHandler : ICommandHandler<UpdatePost>
         }
 
         var tags = await _tagRepository.GetTags(command.Tags);
+        if(!tags.Any())
+        {
+            throw new NotFoundTagException();
+        }
 
         post.Update(command.Title, command.Description, command.CategoryId, tags.ToHashSet());
     }
