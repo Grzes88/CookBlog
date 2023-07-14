@@ -3,6 +3,7 @@ using CookBlog.Core.Repositories;
 using CookBlog.Infrastructure.DAL.Decorators;
 using CookBlog.Infrastructure.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,10 +22,12 @@ internal static class Extensions
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IPostRepository, PostRepository>();
         services.AddScoped<ICommentRepository, CommentRepository>();
-        services.AddScoped<ITagRepository, TagRepository>();
         services.AddHostedService<DatabaseInitializer>();
         services.AddScoped<IUnitOfWork, MSqlUnitOfWork>();
+        services.AddScoped<ITagRepository, TagRepository>();
+        services.AddScoped<IMemoryCache, MemoryCache>();
 
+        services.Decorate<ITagRepository, CacheTagRepository>();
         services.TryDecorate(typeof(ICommandHandler<>), typeof(UnitOfWorkCommandHandlerDecorator<>));
 
         return services;
