@@ -21,7 +21,7 @@ public class UpdatePostTests
         post.Update("Salt", "Note very salty", categoryId, newTags);
 
         //Assert           
-        post.Should().BeNull();
+        post.Should().NotBeNull();
         post.Title.Should().NotBeNull();
         post.Description.Should().NotBeNull();
         post.CategoryId.Should().Be(categoryId);
