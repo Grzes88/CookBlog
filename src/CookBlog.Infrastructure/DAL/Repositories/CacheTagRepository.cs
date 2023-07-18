@@ -1,33 +1,54 @@
 ﻿using CookBlog.Core.Entities;
 using CookBlog.Core.Repositories;
 using CookBlog.Core.ValuesObjects;
-using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Caching.Distributed;
+using Newtonsoft.Json;
 
 namespace CookBlog.Infrastructure.DAL.Repositories;
 
 internal class CacheTagRepository : ITagRepository
 {
     private readonly ITagRepository _decorated;
-    private readonly IMemoryCache _memoryCache;
+    private readonly IDistributedCache _distributedCache;
 
-    public CacheTagRepository(ITagRepository decorated, IMemoryCache memoryCache)
+    public CacheTagRepository(ITagRepository decorated, IDistributedCache distributedCache)
     {
         _decorated = decorated;
-        _memoryCache = memoryCache;
+        _distributedCache = distributedCache;
     }
 
     public async Task<Tag?> GetAsync(TagId id)
     {
         string key = $"tag-{id}";
 
-        return await _memoryCache.GetOrCreateAsync(
-            key,
-            entry =>
-            {
-                entry.SetAbsoluteExpiration(TimeSpan.FromMinutes(2));
+        string? cacheTag = await _distributedCache.GetStringAsync(key);
 
-                return _decorated.GetAsync(id);
+        Tag? tag;
+        if (string.IsNullOrEmpty(cacheTag))
+        {
+            tag = await _decorated.GetAsync(id);
+            
+            if (tag is null)
+            {
+                return tag;
+            }
+
+            await _distributedCache.SetStringAsync(
+                key,
+                JsonConvert.SerializeObject(tag));
+
+            return tag;
+        }
+
+        tag = JsonConvert.DeserializeObject<Tag>(
+            cacheTag,
+            new JsonSerializerSettings
+            {
+                ConstructorHandling =
+                    ConstructorHandling.AllowNonPublicDefaultConstructor
             });
+
+        return tag;
     }
 
     public Task AddAsync(Tag tag) => _decorated.AddAsync(tag);
