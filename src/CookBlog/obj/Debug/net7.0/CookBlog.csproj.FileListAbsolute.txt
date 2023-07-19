@@ -575,3 +575,11 @@ C:\Users\Szymon\source\repos\CookBolog-master\src\CookBlog\obj\Debug\net7.0\Cook
 C:\Users\Szymon\source\repos\CookBolog-master\src\CookBlog\obj\Debug\net7.0\CookBlog.genruntimeconfig.cache
 C:\Users\Szymon\source\repos\CookBolog-master\src\CookBlog\obj\Debug\net7.0\ref\CookBlog.dll
 C:\Users\Szymon\source\repos\CookBolog-master\src\CookBlog\bin\Debug\net7.0\appsettings.test.json
+C:\Users\Szymon\source\repos\CookBolog-master\src\CookBlog\bin\Debug\net7.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+C:\Users\Szymon\source\repos\CookBolog-master\src\CookBlog\bin\Debug\net7.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Szymon\source\repos\CookBolog-master\src\CookBlog\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+C:\Users\Szymon\source\repos\CookBolog-master\src\CookBlog\bin\Debug\net7.0\Pipelines.Sockets.Unofficial.dll
+C:\Users\Szymon\source\repos\CookBolog-master\src\CookBlog\bin\Debug\net7.0\StackExchange.Redis.dll
+C:\Users\Szymon\source\repos\CookBolog-master\src\CookBlog\bin\Debug\net7.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\Szymon\source\repos\CookBolog-master\src\CookBlog\bin\Debug\net7.0\runtimes\win\lib\netcoreapp2.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\Szymon\source\repos\CookBolog-master\src\CookBlog\bin\Debug\net7.0\Newtonsoft.Json.dll
