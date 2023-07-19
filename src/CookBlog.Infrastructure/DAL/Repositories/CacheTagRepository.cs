@@ -1,4 +1,5 @@
-﻿using CookBlog.Core.Entities;
+﻿using CookBlog.Core;
+using CookBlog.Core.Entities;
 using CookBlog.Core.Repositories;
 using CookBlog.Core.ValuesObjects;
 using Microsoft.Extensions.Caching.Distributed;
@@ -17,30 +18,30 @@ internal class CacheTagRepository : ITagRepository
         _distributedCache = distributedCache;
     }
 
-    public async Task<Tag?> GetAsync(TagId id)
+    public async Task<TagDtoo?> GetByIdForRedisAsync(Guid id)
     {
         string key = $"tag-{id}";
 
         string? cacheTag = await _distributedCache.GetStringAsync(key);
 
-        Tag? tag;
+        TagDtoo? tagDto;
         if (string.IsNullOrEmpty(cacheTag))
         {
-            tag = await _decorated.GetAsync(id);
-            
-            if (tag is null)
+            tagDto = await _decorated.GetByIdForRedisAsync(id);
+
+            if (tagDto is null)
             {
-                return tag;
+                return tagDto;
             }
 
             await _distributedCache.SetStringAsync(
                 key,
-                JsonConvert.SerializeObject(tag));
+                JsonConvert.SerializeObject(tagDto));
 
-            return tag;
+            return tagDto;
         }
 
-        tag = JsonConvert.DeserializeObject<Tag>(
+        tagDto = JsonConvert.DeserializeObject<TagDtoo>(
             cacheTag,
             new JsonSerializerSettings
             {
@@ -48,8 +49,10 @@ internal class CacheTagRepository : ITagRepository
                     ConstructorHandling.AllowNonPublicDefaultConstructor
             });
 
-        return tag;
+        return tagDto;
     }
+
+    public async Task<Tag?> GetAsync(TagId id) => await _decorated.GetAsync(id);
 
     public Task AddAsync(Tag tag) => _decorated.AddAsync(tag);
 

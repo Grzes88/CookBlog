@@ -1,4 +1,5 @@
-﻿using CookBlog.Core.Entities;
+﻿using CookBlog.Core;
+using CookBlog.Core.Entities;
 using CookBlog.Core.Repositories;
 using CookBlog.Core.ValuesObjects;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,14 @@ internal sealed class TagRepository : ITagRepository
         => await _tags
         .Include(t => t.Posts)
         .SingleOrDefaultAsync(t => t.Id == id);
+
+    public async Task<TagDtoo?> GetByIdForRedisAsync(Guid id)
+    {
+        var tagId = new TagId(id);
+        var tag = await _tags.SingleOrDefaultAsync(x => x.Id == tagId);
+
+        return new TagDtoo { Id = tag.Id, Description = tag.Description };
+    }
 
     public async Task<IEnumerable<Tag>> GetTags(IEnumerable<Guid> ids)
     {
