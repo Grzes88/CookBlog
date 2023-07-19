@@ -7,6 +7,7 @@ public interface ITagRepository
 {
     Task AddAsync(Tag tag);
     Task<Tag?> GetAsync(TagId id);
+    Task<TagDtoo?> GetByIdForRedisAsync(Guid id);
     void DeleteAsync(Tag tag);
     Task<IEnumerable<Tag>> GetTags(IEnumerable<Guid> ids);
 }
