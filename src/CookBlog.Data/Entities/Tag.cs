@@ -4,7 +4,7 @@ namespace CookBlog.Core.Entities;
 
 public class Tag
 {
-    public TagId Id { get; }
+    public TagId Id { get; set; }
     public Description Description { get; set; }
     public IEnumerable<Post> Posts => _posts;
 
