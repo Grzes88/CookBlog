@@ -1,20 +1,23 @@
 ﻿using CookBlog.Application.Abstractions;
 using CookBlog.Application.DTO;
 using CookBlog.Application.Queries;
-using Microsoft.EntityFrameworkCore;
+using CookBlog.Core.Repositories;
 
 namespace CookBlog.Infrastructure.DAL.Handlers;
 
 public sealed class GetCategoriesHandler : IQueryHandler<GetCategories, IEnumerable<CategoryDto>>
 {
-    private readonly MyCookBlogDbContext _dbContext;
+    private readonly ICategoryRepository _categoryRepository;
 
-    public GetCategoriesHandler(MyCookBlogDbContext dbContext)
-        => _dbContext = dbContext;
+    public GetCategoriesHandler(ICategoryRepository categoryRepository)
+    {
+        _categoryRepository = categoryRepository;
+    }
 
     public async Task<IEnumerable<CategoryDto>> HandleAsync(GetCategories query)
-        => await _dbContext.Categories
-            .AsNoTracking()
-            .Select(Extensions.AsCategoryDto())
-            .ToListAsync();
+    {
+        var categories = await _categoryRepository.GetAllAsync();
+
+        return categories.Select(x => new CategoryDto { Id = x.Id, FullName = x.FullName });
+    }
 }
