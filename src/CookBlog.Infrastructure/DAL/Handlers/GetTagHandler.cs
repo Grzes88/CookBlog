@@ -1,5 +1,6 @@
 ﻿using CookBlog.Application.Abstractions;
 using CookBlog.Application.DTO;
+using CookBlog.Application.Exceptions;
 using CookBlog.Application.Queries;
 using CookBlog.Core.Repositories;
 using CookBlog.Core.ValuesObjects;
@@ -19,6 +20,10 @@ public sealed class GetTagHandler : IQueryHandler<GetTag, TagDto>
     {
         var tagId = new TagId(query.TagId);
         var tag = await _tagRepository.GetAsync(tagId);
+        if (tag is null)
+        {
+            throw new NotFoundTagException();
+        }
 
         return new TagDto { Id = tag.Id, Description = tag.Description };
     }
